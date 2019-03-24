@@ -3,7 +3,11 @@ An extensible videophone notification app that can either flash widget on screen
 
 ## What's VP?
 
-Simply put. Videophones operate like any phone except they come with embedded video support. Please see [here](https://en.wikipedia.org/wiki/Videotelephony) for more information. 
+Simply put. Videophones operate like any phone except they come with embedded video support. Please see [here](https://en.wikipedia.org/wiki/Videotelephony) for more information.
+
+## What's New? (CHANGELOG)
+
+- (v1.0.0) Support for [blink(1)](https://blink1.thingm.com/) USB notification LED light is finally here! 😃
 
 ## Motivation
 
@@ -17,9 +21,9 @@ This project also became a proof-of-concept as a proposed solution for other sim
 
 ## Demonstration
 
-Here's a brief demo (about 20 seconds long) of the app flashing on screen when receiving a call through videophone software.<sup>[1](#disclaimer)</sup>
+Here's a brief demo (about 30 seconds long) of the app flashing on screen along with the blinking USB notification light when receiving a call through the videophone software.<sup>[1](#disclaimer)</sup>
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=ATSlXZZzlxQ" target="_blank"><img src="http://img.youtube.com/vi/ATSlXZZzlxQ/1.jpg" alt="VPFlasher Demo - YouTube Video" width="240" height="180" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=AGXSad484Qc" target="_blank"><img src="http://img.youtube.com/vi/AGXSad484Qc/1.jpg" alt="VPFlasher Demo - YouTube Video" width="240" height="180" border="10" /></a>
 
 <br>
 
@@ -79,9 +83,10 @@ The DMG installer should be created after running the *build_dmg.sh* script. Aft
 
 ## What's Next
 
-While on-screen flasher is a great way to get our attention, we can take this further by including support for [blink(1)](https://blink1.thingm.com/) USB notification LED light in the next release. How cool would that be? 😃
+Maybe it's time I get around to fixing that optimization issue as reported below. No promise it'll be done soon.
 
 ## Known Issues
 
 - The on-screen widgets would only work on the primary display. Multiple displays are not currently supported. Please submit a pull request or a ticket if you have a solution you can share to support this.
 - Occassionally, the app may not react to the incoming calls due to multiple simultaneous traffic bursting through the network. Try restarting the VPFlasher app if you're experiencing issue. Please submit a ticket if issue persists. Thanks in advance. Optimization is on the roadmap.
+- The blink(1) notification light may get stuck in its previous state due to an unexpected crash. To fix the issue, please re-insert the USB stick.

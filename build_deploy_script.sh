@@ -2,7 +2,7 @@
 
 ### File name: build_deploy_script.sh
 ### Author: Travis Johnson
-### Date last modified: 02/17/2019
+### Date last modified: 03/24/2019
 ### GNU Bash: 3.2.57
 
 exitIfFailed() {
@@ -70,7 +70,7 @@ echo "+++ Upgrading pip..."
 pip install --upgrade pip
 exitIfFailed
 echo "+++ Install latest version of py2app and scapy modules..."
-pip install py2app scapy
+pip install py2app scapy blink1
 exitIfFailed
 
 # update the app version number

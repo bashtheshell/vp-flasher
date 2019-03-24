@@ -1,9 +1,10 @@
 '''
     File name: VPFlasher.py
     Author: Travis Johnson
-    Date last modified: 01/19/2019
-    Python Version: 3.7.1
+    Date last modified: 03/24/2019
+    Python Version: 3.7.2
     Scapy Version: 2.4.2
+    Blink1 Version: 0.2.3
 '''
 
 import sys
@@ -11,6 +12,7 @@ from tkinter import Tk, Menu, Toplevel, Label, BOTH
 from scapy.all import sniff
 from threading import Thread, main_thread
 from time import time, sleep
+from blink1.blink1 import Blink1
 
 class Flasher:
 
@@ -40,6 +42,7 @@ class Flasher:
         self.root.bind("<<SessionOff>>", self.session_terminated)
 
         # start "main program here"
+        self.blink1_reacts_to_call_in_thread()
         self.waiting_for_payload_in_thread()
 
         self.root.mainloop()
@@ -51,7 +54,7 @@ class Flasher:
         while True:
             # exit the program if main thread is terminated
             if not main_thread().is_alive():
-                sys.exit(1)
+                self.terminate_program()
             # reset the payload processing if ringing timed out
             if self.call_status == "RINGING" and time() >= self.ring_timeout:
                 self.ring_has_timed_out = True
@@ -156,7 +159,7 @@ class Flasher:
 
             # exit the program if main thread is terminated
             if not main_thread().is_alive():
-                sys.exit(1)
+                self.terminate_program()
             
             # resume to listen for new incoming call if session terminated
             if time() >= self.session_timeout:
@@ -228,11 +231,40 @@ class Flasher:
 
 ###### END OF EVENT BINDING ######
 #
+###### BEGINNING OF BLINK1 FUNCTIONS ######
+
+    def blink1_reacts_to_call_in_thread(self):
+        self.blink_on = Thread(target=self.blink1_reacts_to_call)
+        self.blink_on.start()
+
+    def blink1_reacts_to_call(self):
+        try:
+            self.blinker = Blink1()
+        except Blink1ConnectionFailed:
+            print("There appeared to be an error connecting to 'blink(1)' USB stick.")
+        while True:
+            if self.call_status == "RINGING":
+                self.blinker.fade_to_color(100, 'blue')
+                sleep(0.1)
+                self.blinker.fade_to_color(100, 'black')
+                sleep(0.1)
+            elif self.call_status == "IN_CALL":
+                self.blinker.fade_to_color(1000, 'red')
+                sleep(0.5)
+            else:
+                self.blinker.fade_to_color(500, 'black')
+                sleep(0.5)
+        self.blinker.close()
+
+###### END OF BLINK1 FUNCTIONS ######
+#
 ###### BEGINNING OF MISCELLANEOUS FUNCTIONS ######
 
     def terminate_program(self):
+        self.blinker.fade_to_color(1, 'black')
+        self.blinker.close()
         sys.exit(1)
-
+        
 ###### END OF MISCELLANEOUS FUNCTIONS ######
 
 if __name__ == "__main__":
