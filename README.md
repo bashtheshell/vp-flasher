@@ -52,7 +52,7 @@ It's highly recommended to install the latest version of Python 3 (must be great
 
 Once Python is installed, the following path should exist where you'll find the necessary Python version (3.7 is used here): `/Library/Frameworks/Python.framework/Versions/3.7/bin/`
 
-###### <a name="disclaimer">1</a>: DISCLAIMER - This GitHub repository is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Convo Communications, LLC, or any of their subsidiaries or affiliates. All product and company names are the registered trademarks of their original owners. The use of any trade name or trademark is for demonstration, identification, and reference purposes only and does not imply any association with the trademark holder of their product brand. It is higly advised to review their [911/Legal Disclaimer](https://www.convorelay.com/legal) for registration eligibility prior to using their product. 
+###### <a name="disclaimer">1</a>: DISCLAIMER - This GitHub repository is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Convo Communications, LLC, or any of their subsidiaries or affiliates. All product and company names are the registered trademarks of their original owners. The use of any trade name or trademark is for demonstration, identification, and reference purposes only and does not imply any association with the trademark holder of their product brand. It is highly advised to review their [911/Legal Disclaimer](https://www.convorelay.com/legal) for registration eligibility prior to using their product. 
 
 ### Steps to Build App:
 
